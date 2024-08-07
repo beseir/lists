@@ -15,7 +15,15 @@
   width: 100%;
 
 }
-
+.link{
+  width: 6%;
+  margin-left: 10px;
+  margin-top: 5px;
+  color: #2d4159;
+}
+select{
+  margin: 10px;
+}
 .list{
   background-color: #1a1a1a;
   padding: 10px;
@@ -95,3 +103,27 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.listOfLists{
+  display: grid;
+  grid-template-columns: repeat(3, .1fr);
+  grid-gap: 15px;
+}
+@media screen and (max-width: 800px) {
+  .listOfLists{
+    grid-template-columns: repeat(1, .1fr);
+  }
+
+}
+@media screen and (min-width: 800px) {
+  .listOfLists{
+    grid-template-columns: repeat(2, .1fr);
+  }
+
+}
+@media screen and (min-width: 1200px) {
+  .listOfLists{
+    grid-template-columns: repeat(3, .1fr);
+  }
+
+}
+
