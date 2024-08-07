@@ -72,8 +72,11 @@ function App() {
     };
 
     const handleAddNewList = () => {
-        setLists((prevLists) => [...prevLists, { ...newList, checked: false }]);
-        handleCloseModal();
+        if(newList.url && newList.name && newList.ds){
+            setLists((prevLists) => [...prevLists, { ...newList, checked: false }]);
+            handleCloseModal();
+        }
+
     };
 
     const sortedLists = sortLists();
