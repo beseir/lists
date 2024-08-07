@@ -127,3 +127,9 @@ button:focus-visible {
 
 }
 
+.modal-content > button{
+  margin-top: 15px;
+}
+.modal-content{
+  margin-bottom: 15px;
+}

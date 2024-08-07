@@ -5,6 +5,7 @@ import { List } from "./components/List";
 function App() {
     const [lists, setLists] = useState([]);
     const [sortOption, setSortOption] = useState("default");
+    const [newList, setNewList] = useState({ name: "", url: "", ds: "", link: "" });
 
     useEffect(() => {
         const savedLists =
@@ -60,12 +61,65 @@ function App() {
         return sortedLists;
     };
 
+
+    const handleCloseModal = () => {
+        setNewList({ name: "", url: "", ds: "", link: "" });
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewList((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleAddNewList = () => {
+        setLists((prevLists) => [...prevLists, { ...newList, checked: false }]);
+        handleCloseModal();
+    };
+
     const sortedLists = sortLists();
 
     return (
         <div className={"app"}>
             <h2>List of Lists</h2>
+            {(
+                <div className="modal">
+                    <div className="modal-content">
+                        <h3>Добавить новый список</h3>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Название"
+                            value={newList.name}
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="text"
+                            name="url"
+                            placeholder="URL изображения"
+                            value={newList.url}
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="text"
+                            name="ds"
+                            placeholder="Описание"
+                            value={newList.ds}
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="text"
+                            name="link"
+                            placeholder="Ссылка"
+                            value={newList.link}
+                            onChange={handleInputChange}
+                        />
+                        <button onClick={handleAddNewList}>Добавить</button>
+                        <button onClick={handleCloseModal}>Отмена</button>
+                    </div>
+                </div>
+            )}
             <div>
+
                 <select id="sortOption" value={sortOption} onChange={handleSortChange}>
                     <option value="default">Все</option>
                     <option value="checked">Только избранные</option>
@@ -90,6 +144,8 @@ function App() {
                 )}
             </div>
             <p>Ждите обновления!</p>
+
+
         </div>
     );
 }
